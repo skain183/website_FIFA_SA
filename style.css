@@ -71,3 +71,27 @@
   footer a:hover {
     color: white;
   }
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  background-color: #e0ecf9;
+}
+
+.button-container button {
+  background-color: #005baa;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+  background-color: #003f7f;
+}
+
