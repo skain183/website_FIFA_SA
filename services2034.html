@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FIFA 2034 Services</title>
+  <style>
+    button {
+      padding: 15px 25px;
+      font-size: 18px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    #content-area, #media-area {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  </style>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <h1 id="main-title">FIFA 2034 Services</h1>
+
+  <!-- Language Toggle -->
+  <button onclick="toggleLanguage()">Toggle Language</button>
+
+  <!-- Section Buttons -->
+  <div id="buttons">
+    <button onclick="showSection('schedule')" data-en="Schedule" data-ar="الجدول">Schedule</button>
+    <button onclick="showSection('tickets')" data-en="Tickets" data-ar="التذاكر">Tickets</button>
+    <button onclick="showSection('hotels')" data-en="Hotels" data-ar="الفنادق">Hotels</button>
+    <button onclick="showSection('cities')" data-en="Cities" data-ar="المدن">Cities</button>
+    <button onclick="showSection('language')" data-en="Language Tips" data-ar="نصائح لغوية">Language Tips</button>
+    <button onclick="showSection('transportation')" data-en="Transport" data-ar="النقل">Transport</button>
+    <button onclick="showSection('restaurants')" data-en="Restaurants" data-ar="مطاعم">Restaurants</button>
+    <button onclick="showSection('fanZones')" data-en="Fan Zones" data-ar="الجماهير">Fan Zones</button>
+  </div>
+
+  <!-- Content & Media -->
+  <div id="content-area"></div>
+  <div id="media-area"></div>
+
+  <!-- Chatbot -->
+  <div>
+    <input id="chat-input" type="text" placeholder="Ask me anything..." style="width: 300px; padding: 10px;">
+    <button onclick="handleChat()">Send</button>
+    <p id="chat-response"></p>
+  </div>
+</body>
+</html>
