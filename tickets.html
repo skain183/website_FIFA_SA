@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tickets - FIFA 2034</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+    }
+
+    #bg-slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .navbar {
+      background-color: #003366;
+      padding: 15px 0;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .navbar a {
+      color: white;
+      background-color: #0055a5;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 12px 24px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 85, 165, 0.3);
+    }
+
+    .navbar a:hover {
+      background-color: #3399ff;
+      transform: translateY(-2px);
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 60px 30px;
+      margin: 40px auto;
+      max-width: 900px;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+
+    .center-content {
+      max-width: 600px;
+      width: 100%;
+      margin: auto;
+    }
+
+    h2 {
+      color: #003366;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 15px 0 5px;
+      color: #003366;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #003366;
+      color: white;
+      font-weight: bold;
+      margin-top: 20px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0055a5;
+    }
+
+    .price-display {
+      background: #e3f2fd;
+      color: #003366;
+      font-weight: bold;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 15px;
+      font-size: 18px;
+    }
+
+    .confirmation {
+      display: none;
+      background: #e3f2fd;
+      padding: 15px;
+      border: 1px solid #003366;
+      border-radius: 10px;
+      color: #003366;
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div id="bg-slideshow"></div>
+
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="tickets.html">Tickets</a></li>
+      <li><a href="hotels.html">Hotels</a></li>
+      <li><a href="language.html">Language Tips</a></li>
+      <li><a href="transport.html">Transportation</a></li>
+      <li><a href="chatbot.html">Chatbot</a></li>
+      <li><a href="account.html" class="memory-btn">Memory Vault</a></li>
+    </ul>
+  </nav>
+  
+  <section class="section">
+    <div class="center-content">
+      <h2>🎟️ Book Your Tickets</h2>
+
+      <label for="day">Select Match Day:</label>
+      <select id="day">
+        <option value="">-- Select a Day --</option>
+        <option>June 15</option>
+        <option>July 10</option>
+      </select>
+
+      <label for="class">Select Ticket Type:</label>
+      <select id="class" onchange="autoSetPrice()">
+        <option value="">-- Select Class --</option>
+        <option value="Standard">Standard</option>
+        <option value="VIP">VIP</option>
+        <option value="Front Row">Front Row</option>
+      </select>
+
+      <div id="priceDisplay" class="price-display" style="display: none;">Price: <span id="priceText"></span></div>
+
+      <button onclick="confirmBooking()">Confirm Booking</button>
+
+      <div class="confirmation" id="confirmation">✅ Ticket booked successfully!</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 BugSquad19 | All rights reserved.</p>
+  </footer>
+
+  <script>
+    const images = [
+      'images/pretty stadium.png',
+      'images/interface.png',
+      'images/stadium.jpg',
+      'images/people.png',
+    ];
+
+    let current = 0;
+    const bg = document.getElementById('bg-slideshow');
+
+    function switchBackground() {
+      bg.style.opacity = 0;
+      setTimeout(() => {
+        current = (current + 1) % images.length;
+        bg.style.backgroundImage = `url('${images[current]}')`;
+        bg.style.opacity = 1;
+      }, 1000);
+    }
+
+    bg.style.backgroundImage = `url('${images[0]}')`;
+    setInterval(switchBackground, 8000);
+
+    function autoSetPrice() {
+      const selectedDay = document.getElementById('day').value;
+      const selectedClass = document.getElementById('class').value;
+      let price = '';
+
+      if (selectedDay === 'June 15') {
+        if (selectedClass === 'Standard') price = '150 SAR';
+        else if (selectedClass === 'VIP') price = '300 SAR';
+        else if (selectedClass === 'Front Row') price = '450 SAR';
+      } else if (selectedDay === 'July 10') {
+        if (selectedClass === 'Standard') price = '200 SAR';
+        else if (selectedClass === 'VIP') price = '400 SAR';
+        else if (selectedClass === 'Front Row') price = '600 SAR';
+      }
+
+      const priceDisplay = document.getElementById('priceDisplay');
+      const priceText = document.getElementById('priceText');
+
+      if (price) {
+        priceDisplay.style.display = 'block';
+        priceText.textContent = price;
+      } else {
+        priceDisplay.style.display = 'none';
+        priceText.textContent = '';
+      }
+    }
+
+    function confirmBooking() {
+      const day = document.getElementById('day').value;
+      const type = document.getElementById('class').value;
+      const price = document.getElementById('priceText').textContent;
+
+      if (!day || !type || !price) {
+        alert("❗ Please select all fields before confirming.");
+        return;
+      }
+
+      document.getElementById('confirmation').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

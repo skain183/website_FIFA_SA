@@ -1,90 +1,118 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <meta name="description" content="All about the 2034 World Cup in Saudi Arabia! Tickets, schedules, and more.">
-  <title>FIFA 2034 in SA services</title>
-  <link rel="stylesheet" href="style.css"> <!--this is for the CSS file-->
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon"> <!--this is the web head icon-->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home - FIFA 2034</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      position: relative;
+      overflow-x: hidden;
+    }
+    #bg-slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      opacity: 1;
+      transition: opacity 0.7s ease-in-out;
+    }
+    .hero {
+      text-align: center;
+      padding: 150px 20px;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 {
+      font-size: 64px;
+      margin: 0 0 20px;
+    }
+    .hero p {
+      font-size: 22px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .navbar { background-color: #003366; padding: 15px 0; text-align: center; }
+    .navbar ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; padding: 0; margin: 0; }
+    .navbar a {
+      color: white;
+      background-color: #0055a5;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 12px 24px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+    .navbar a:hover {
+      background-color: #3399ff;
+      transform: translateY(-2px);
+    }
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+  </style>
 </head>
 <body>
-    <script src="script.js"></script> <!-- this is for the JS file-->
-
-  <header>
-    <h1>Explore the FIFA World Cup 2034: Your Complete Guide to Saudi Arabia’s Big Event!</h1>
-  </header>
-
-<section> <h2>Introduction</h2>
-  <p><strong>Welcome to the ultimate guide for the FIFA World Cup 2034 in Saudi Arabia!</strong> <br> This historic event marks Saudi Arabia’s first time hosting the World Cup, promising top-tier matches, world-class stadiums, and a unique cultural experience. <br>In our website, you’ll find everything you need — from event schedules 🗓️, ticket info 🎟️, transportation 🚗, to hotel options and a chatbot to help you answer your queries!</p>
- </section>   
-
-  <button class="info-button" id="schedule-button">
-    <h2>Event Schedule</h2>
-    <p>Details about match timings, stadiums, and more!</p>
-  </button>
-
-  <button class="info-button" id="tickets-button">
-    <h2>Tickets</h2>
-    <p>How to purchase tickets, pricing, and important info.</p>
-  </button>
-
-  <button class="info-button" id="cultural-tips-button">
-    <h2>Language / Cultural Tips</h2>
-    <p>All the details you need about getting around during the World Cup.</p>
-  </button>
-
-  <button class="info-button" id="transportation-button">
-    <h2>Transportation</h2>
-    <p>All the details you need about getting around during the World Cup.</p>
-  </button>
-
-  <button class="info-button" id="hotels-button">
-    <h2>Hotels</h2>
-    <p>Find the best accommodations for your stay.</p>
-  </button>
-
-  <button class="info-button" id="chatbot-button">
-    <h2>Chatbot Assistant</h2>
-    <p>Talk to our virtual assistant for quick answers!</p>
-  </button>
-
+  <div id="bg-slideshow"></div>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="tickets.html">Tickets</a></li>
+      <li><a href="hotels.html">Hotels</a></li>
+      <li><a href="language.html">Language Tips</a></li>
+      <li><a href="transport.html">Transportation</a></li>
+      <li><a href="chatbot.html">Chatbot</a></li>
+      <li><a href="account.html">Memory Vault</a></li>
+    </ul>
+  </nav>
+  <section class="hero">
+    <h1>Welcome to FIFA 2034 Services</h1>
+    <p>Your ultimate guide to the FIFA World Cup 2034 in Saudi Arabia 🇸🇦! Easily explore tickets, hotels, transportation, and everything you need to enjoy the experience — all in one place.</p>
+    <h4 class="note">⚠️ Note: Due to limited official data, sample content has been provided for each service.</h4>
+  </section>
   <footer>
-    <h2>Follow the latest updates for this major event on social media!</h2>
-    <a href="https://www.facebook.com/Saudi2034/photos_by/">Facebook</a><br>
-    <a href="https://x.com/FIFAWorldCup/status/1592887239695998977">Twitter</a><br>
-    <a href="https://www.instagram.com/FIFA/">Instagram</a>
+    <p>&copy; 2025 BugSquad19 | All rights reserved.</p>
   </footer>
-
+  <script>
+    const images = [
+      'images/pretty stadium.png',
+      'images/interface.png',
+      'images/unify.png',
+      'images/people.png',
+      'images/stadium.jpg'
+    ];
+    let current = 0;
+    const slideshow = document.getElementById('bg-slideshow');
+    function changeSlide() {
+      slideshow.style.opacity = 0;
+      setTimeout(() => {
+        current = (current + 1) % images.length;
+        slideshow.style.backgroundImage = `url('${images[current]}')`;
+        slideshow.style.opacity = 1;
+      }, 700);
+    }
+    slideshow.style.backgroundImage = `url('${images[0]}')`;
+    slideshow.style.opacity = 1;
+    setInterval(changeSlide, 5000);
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-<div class="section">
-  <div class="toggle-header">Transportation</div>
-  <div class="toggle-content">
-    <p>Here you can find info about metro, buses, taxis, and more...</p>
-  </div>
-</div>
-
-<div class="section">
-  <div class="toggle-header">Hotels</div>
-  <div class="toggle-content">
-    <p>Recommended hotels near stadiums with ratings and locations.</p>
-  </div>
-</div>
-
-<div class="section">
-  <div class="toggle-header">Language and Cultural Tips</div>
-  <div class="toggle-content">
-    <p>Learn common phrases and customs to help you navigate local culture.</p>
-  </div>
-</div>
-

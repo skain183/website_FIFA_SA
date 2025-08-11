@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Memory Vault - FIFA 2034</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #bg-slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .navbar {
+      background-color: #003366;
+      padding: 15px 0;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .navbar a {
+      color: white;
+      background-color: #0055a5;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 12px 24px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 85, 165, 0.3);
+    }
+
+    .navbar a:hover {
+      background-color: #3399ff;
+      transform: translateY(-2px);
+    }
+
+    .navbar ul li:last-child a {
+      background-color: #ffcc00;
+      color: #003366;
+      font-weight: bold;
+    }
+
+    .navbar ul li:last-child a:hover {
+      background-color: #ffdb4d;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 60px 30px;
+      margin: 40px auto;
+      max-width: 900px;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+
+    .center-content {
+      max-width: 600px;
+      width: 100%;
+      margin: auto;
+    }
+
+    h2 {
+      color: #003366;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    input, textarea, select, button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #003366;
+      color: white;
+      font-weight: bold;
+      margin-top: 20px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0055a5;
+    }
+
+    .post {
+      background: #e3f2fd;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .post img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .username {
+      font-weight: bold;
+      color: #003366;
+    }
+
+    .like-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #ffcc00;
+      color: #003366;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .like-btn:hover {
+      background-color: #ffe066;
+    }
+
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div id="bg-slideshow"></div>
+
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="tickets.html">Tickets</a></li>
+      <li><a href="hotels.html">Hotels</a></li>
+      <li><a href="language.html">Language Tips</a></li>
+      <li><a href="transport.html">Transportation</a></li>
+      <li><a href="chatbot.html">Chatbot</a></li>
+      <li><a href="account.html">Memory Vault</a></li>
+    </ul>
+  </nav>
+
+  <section class="section">
+    <div class="center-content">
+      <h2>✨ Welcome to The Memory Vault - FIFA 2034</h2>
+      <div id="authSection">
+        <form id="registerForm" style="margin-bottom: 20px;">
+          <h3>Create Account</h3>
+          <input type="text" id="registerUsername" placeholder="Username" required />
+          <button type="submit">Register</button>
+        </form>
+        <form id="loginForm" style="margin-bottom: 20px;">
+          <h3>Login</h3>
+          <input type="text" id="loginUsername" placeholder="Username" required />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+      <div id="userSection" style="display:none;">
+        <p>Logged in as: <span id="currentUser"></span> <button id="logoutBtn">Logout</button></p>
+        <form id="postForm">
+          <textarea id="caption" rows="3" placeholder="Write your caption..." required></textarea>
+          <input type="file" id="imageUpload" accept="image/*" required />
+          <button type="submit">Post</button>
+        </form>
+        <h3>Posts Feed</h3>
+        <div id="postContainer"></div>
+      </div>
+    </div>
+  </section>
+=======
+  <script>
+    const images = [
+      'images/pretty stadium.png',
+      'images/interface.png',
+      'images/stadium.jpg',
+      'images/people.png',
+    ];
+
+    let current = 0;
+    const bg = document.getElementById('bg-slideshow');
+
+    function switchBackground() {
+      bg.style.opacity = 0;
+      setTimeout(() => {
+        current = (current + 1) % images.length;
+        bg.style.backgroundImage = `url('${images[current]}')`;
+        bg.style.opacity = 1;
+      }, 1000);
+    }
+
+    bg.style.backgroundImage = `url('${images[0]}')`;
+    setInterval(switchBackground, 8000);
+
+    // User management
+    function getUsers() {
+      return JSON.parse(localStorage.getItem('users')) || [];
+    }
+
+    function saveUsers(users) {
+      localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    function getCurrentUser() {
+      return localStorage.getItem('currentUser');
+    }
+
+    function setCurrentUser(username) {
+      localStorage.setItem('currentUser', username);
+    }
+
+    function logoutUser() {
+      localStorage.removeItem('currentUser');
+      showAuthSection();
+    }
+
+    // Show auth or user section
+    function showAuthSection() {
+      document.getElementById('authSection').style.display = 'block';
+      document.getElementById('userSection').style.display = 'none';
+      document.getElementById('currentUser').textContent = '';
+      clearPosts();
+    }
+
+    function showUserSection(username) {
+      document.getElementById('authSection').style.display = 'none';
+      document.getElementById('userSection').style.display = 'block';
+      document.getElementById('currentUser').textContent = username;
+      loadPosts();
+    }
+
+    // Register user
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = document.getElementById('registerUsername').value.trim();
+      if (!username) return alert('Please enter a username');
+      let users = getUsers();
+      if (users.includes(username)) {
+        alert('Username already exists');
+        return;
+      }
+      users.push(username);
+      saveUsers(users);
+      setCurrentUser(username);
+      showUserSection(username);
+      this.reset();
+    });
+
+    // Login user
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = document.getElementById('loginUsername').value.trim();
+      if (!username) return alert('Please enter a username');
+      let users = getUsers();
+      if (!users.includes(username)) {
+        alert('Username does not exist');
+        return;
+      }
+      setCurrentUser(username);
+      showUserSection(username);
+      this.reset();
+    });
+
+    // Logout button
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+      logoutUser();
+    });
+
+    // Posts management
+    function getPosts() {
+      return JSON.parse(localStorage.getItem('posts')) || [];
+    }
+
+    function savePosts(posts) {
+      localStorage.setItem('posts', JSON.stringify(posts));
+    }
+
+    function clearPosts() {
+      document.getElementById('postContainer').innerHTML = '';
+    }
+
+    // Add post to DOM
+    function addPostToDOM(post) {
+      const postContainer = document.getElementById('postContainer');
+      const postDiv = document.createElement('div');
+      postDiv.classList.add('post');
+      postDiv.dataset.id = post.id;
+
+      let commentsHTML = '';
+      if (post.comments && post.comments.length > 0) {
+        commentsHTML = '<div class="comments">';
+        post.comments.forEach(comment => {
+          commentsHTML += `<p><strong>@${comment.username}</strong>: ${comment.text}</p>`;
+        });
+        commentsHTML += '</div>';
+      }
+
+      postDiv.innerHTML = `
+        <p class="username">@${post.username}</p>
+        <p>${post.caption}</p>
+        <img src="${post.imgSrc}" alt="User upload">
+        <button class="like-btn">❤️ Like (<span class="like-count">${post.likes || 0}</span>)</button>
+        <div class="comment-section">
+          <input type="text" class="comment-input" placeholder="Add a comment..." />
+          <button class="comment-btn">Comment</button>
+          <div class="comments-list">${commentsHTML}</div>
+        </div>
+      `;
+
+      postContainer.prepend(postDiv);
+
+      // Like button event
+      const likeBtn = postDiv.querySelector('.like-btn');
+      likeBtn.addEventListener('click', () => {
+        likePost(post.id, likeBtn);
+      });
+
+      // Comment button event
+      const commentBtn = postDiv.querySelector('.comment-btn');
+      commentBtn.addEventListener('click', () => {
+        const input = postDiv.querySelector('.comment-input');
+        const commentText = input.value.trim();
+        if (!commentText) return;
+        const currentUser = getCurrentUser() || 'Anonymous';
+        const comment = { username: currentUser, text: commentText };
+        if (!post.comments) post.comments = [];
+        post.comments.push(comment);
+        updatePost(post.id, post);
+        addCommentToDOM(postDiv, comment);
+        input.value = '';
+      });
+    }
+
+    // Add comment to DOM
+    function addCommentToDOM(postDiv, comment) {
+      const commentsList = postDiv.querySelector('.comments-list');
+      const commentHTML = `<p><strong>@${comment.username}</strong>: ${comment.text}</p>`;
+      commentsList.insertAdjacentHTML('beforeend', commentHTML);
+    }
+
+    // Update post in localStorage
+    function updatePost(id, updatedPost) {
+      let posts = getPosts();
+      const index = posts.findIndex(p => p.id === id);
+      if (index !== -1) {
+        posts[index] = updatedPost;
+        savePosts(posts);
+      }
+    }
+
+    // Like post
+    function likePost(postId, button) {
+      let posts = getPosts();
+      const post = posts.find(p => p.id === postId);
+      if (post) {
+        post.likes = (post.likes || 0) + 1;
+        savePosts(posts);
+        const countSpan = button.querySelector('.like-count');
+        countSpan.textContent = post.likes;
+      }
+    }
+
+    // Generate unique ID for posts
+    function generateId() {
+      return '_' + Math.random().toString(36).substr(2, 9);
+    }
+
+    // Handle post form submission
+    document.getElementById('postForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const currentUser = getCurrentUser();
+      if (!currentUser) {
+        alert('Please login to post');
+        return;
+      }
+      const caption = document.getElementById('caption').value.trim();
+      const file = document.getElementById('imageUpload').files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const imgSrc = event.target.result;
+        const post = {
+          id: generateId(),
+          username: currentUser,
+          caption,
+          imgSrc,
+          likes: 0,
+          comments: []
+        };
+        let posts = getPosts();
+        posts.push(post);
+        savePosts(posts);
+        addPostToDOM(post);
+        document.getElementById('postForm').reset();
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Load posts on page load
+    window.onload = function() {
+      const currentUser = getCurrentUser();
+      if (currentUser) {
+        showUserSection(currentUser);
+      } else {
+        showAuthSection();
+      }
+    };
+  </script>
+
+  <footer>
+    <p>&copy; 2025 BugSquad19 | All rights reserved.</p>
+  </footer>
+
+  <script>
+    const images = [
+      'images/pretty stadium.png',
+      'images/interface.png',
+      'images/stadium.jpg',
+      'images/people.png',
+    ];
+
+    let current = 0;
+    const bg = document.getElementById('bg-slideshow');
+
+    function switchBackground() {
+      bg.style.opacity = 0;
+      setTimeout(() => {
+        current = (current + 1) % images.length;
+        bg.style.backgroundImage = `url('${images[current]}')`;
+        bg.style.opacity = 1;
+      }, 1000);
+    }
+
+    bg.style.backgroundImage = `url('${images[0]}')`;
+    setInterval(switchBackground, 8000);
+
+    // Load posts from localStorage
+    function loadPosts() {
+      const posts = JSON.parse(localStorage.getItem('posts')) || [];
+      posts.forEach(post => {
+        addPostToDOM(post, false);
+      });
+    }
+
+    // Save posts to localStorage
+    function savePosts(posts) {
+      localStorage.setItem('posts', JSON.stringify(posts));
+    }
+
+    // Add post to DOM
+    function addPostToDOM(post, save = true) {
+      const postContainer = document.getElementById("postContainer");
+      const postDiv = document.createElement("div");
+      postDiv.classList.add("post");
+      postDiv.dataset.id = post.id;
+      let commentsHTML = '';
+      if (post.comments && post.comments.length > 0) {
+        commentsHTML = '<div class="comments">';
+        post.comments.forEach(comment => {
+          commentsHTML += `<p><strong>@${comment.username}</strong>: ${comment.text}</p>`;
+        });
+        commentsHTML += '</div>';
+      }
+      postDiv.innerHTML = `
+        <p class="username">@${post.username}</p>
+        <p>${post.caption}</p>
+        <img src="${post.imgSrc}" alt="User upload">
+        <button class="like-btn" onclick="likePost(this)">❤️ Like (<span class="like-count">${post.likes || 0}</span>)</button>
+        <div class="comment-section">
+          <input type="text" class="comment-input" placeholder="Add a comment..." />
+          <button class="comment-btn">Comment</button>
+          <div class="comments-list">${commentsHTML}</div>
+        </div>
+      `;
+      postContainer.prepend(postDiv);
+
+      // Add event listener for comment button
+      const commentBtn = postDiv.querySelector('.comment-btn');
+      commentBtn.addEventListener('click', () => {
+        const input = postDiv.querySelector('.comment-input');
+        const commentText = input.value.trim();
+        if (!commentText) return;
+        const username = document.getElementById("username").value.trim() || 'Anonymous';
+        const comment = { username, text: commentText };
+        if (!post.comments) post.comments = [];
+        post.comments.push(comment);
+        updatePost(post.id, post);
+        addCommentToDOM(postDiv, comment);
+        input.value = '';
+      });
+    }
+
+    // Add comment to DOM
+    function addCommentToDOM(postDiv, comment) {
+      const commentsList = postDiv.querySelector('.comments-list');
+      const commentHTML = `<p><strong>@${comment.username}</strong>: ${comment.text}</p>`;
+      commentsList.insertAdjacentHTML('beforeend', commentHTML);
+    }
+
+    // Update post in localStorage and DOM
+    function updatePost(id, updatedPost) {
+      const posts = JSON.parse(localStorage.getItem('posts')) || [];
+      const index = posts.findIndex(p => p.id === id);
+      if (index !== -1) {
+        posts[index] = updatedPost;
+        savePosts(posts);
+      }
+    }
+
+    // Like post
+    function likePost(button) {
+      const postDiv = button.closest('.post');
+      const postId = postDiv.dataset.id;
+      const posts = JSON.parse(localStorage.getItem('posts')) || [];
+      const post = posts.find(p => p.id === postId);
+      if (post) {
+        post.likes = (post.likes || 0) + 1;
+        savePosts(posts);
+        const countSpan = button.querySelector(".like-count");
+        countSpan.textContent = post.likes;
+      }
+    }
+
+    // Generate unique ID for posts
+    function generateId() {
+      return '_' + Math.random().toString(36).substr(2, 9);
+    }
+
+    // Handle form submission
+    document.getElementById("postForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim() || 'Anonymous';
+      const caption = document.getElementById("caption").value.trim();
+      const file = document.getElementById("imageUpload").files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        const imgSrc = event.target.result;
+        const post = {
+          id: generateId(),
+          username,
+          caption,
+          imgSrc,
+          likes: 0,
+          comments: []
+        };
+        addPostToDOM(post);
+        const posts = JSON.parse(localStorage.getItem('posts')) || [];
+        posts.push(post);
+        savePosts(posts);
+        document.getElementById("postForm").reset();
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Load posts on page load
+    window.onload = loadPosts;
+  </script>
+</body>
+</html>

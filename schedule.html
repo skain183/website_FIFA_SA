@@ -1,0 +1,151 @@
+<!-- schedule.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schedule - FIFA 2034</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: url('images/interface.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      transition: background-image 1s ease-in-out;
+    }
+    .section {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 60px 30px;
+      margin: 40px auto;
+      max-width: 1000px;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+    h2 {
+      color: #003366;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+    th {
+      background-color: #003366;
+      color: white;
+    }
+    tr:hover {
+      background-color: #e3f2fd;
+    }
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .navbar {
+      background-color: #003366;
+      padding: 15px 0;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      padding: 0;
+      margin: 0;
+    }
+    .navbar a {
+      color: white;
+      background-color: #0055a5;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 12px 24px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 85, 165, 0.3);
+    }
+    .navbar a:hover {
+      background-color: #3399ff;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="tickets.html">Tickets</a></li>
+      <li><a href="hotels.html">Hotels</a></li>
+      <li><a href="language.html">Language Tips</a></li>
+      <li><a href="transport.html">Transportation</a></li>
+      <li><a href="chatbot.html">Chatbot</a></li>
+      <li><a href="account.html" class="memory-btn">Memory Vault</a></li>
+    </ul>
+  </nav>
+  
+  <section class="section">
+    <h2>📅 Match Schedule</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Match</th>
+          <th>Location</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>June 8, 2034</td>
+          <td>Saudi Arabia vs Japan</td>
+          <td>King Fahd Stadium, Riyadh</td>
+          <td>9:00 PM</td>
+        </tr>
+        <tr>
+          <td>June 9, 2034</td>
+          <td>Brazil vs Germany</td>
+          <td>Jeddah Stadium</td>
+          <td>8:00 PM</td>
+        </tr>
+        <tr>
+          <td>June 10, 2034</td>
+          <td>France vs Argentina</td>
+          <td>Al Khobar Stadium</td>
+          <td>7:00 PM</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <footer>
+    <p>&copy; 2025 BugSquad19 | All rights reserved.</p>
+  </footer>
+  <script>
+    const images = [
+      'images/interface.png',
+      'images/unify.png',
+      'images/people.png',
+      'images/pretty stadium.png',
+      'images/stadium.jpg'
+    ];
+    let current = 0;
+    setInterval(() => {
+      current = (current + 1) % images.length;
+      document.body.style.backgroundImage = `url('${images[current]}')`;
+    }, 8000);
+  </script>
+</body>
+</html>
+
+

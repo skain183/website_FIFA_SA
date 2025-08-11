@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Language Tips - FIFA 2034</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+    }
+
+    #bg-slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .navbar {
+      background-color: #003366;
+      padding: 15px 0;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .navbar a {
+      color: white;
+      background-color: #0055a5;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 12px 24px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 85, 165, 0.3);
+    }
+
+    .navbar a:hover {
+      background-color: #3399ff;
+      transform: translateY(-2px);
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 60px 30px;
+      margin: 40px auto;
+      max-width: 900px;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      color: #003366;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 16px;
+      font-size: 18px;
+      color: #1b1b1b;
+    }
+
+    strong {
+      color: #003366;
+    }
+
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div id="bg-slideshow"></div>
+
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="tickets.html">Tickets</a></li>
+      <li><a href="hotels.html">Hotels</a></li>
+      <li><a href="language.html">Language Tips</a></li>
+      <li><a href="transport.html">Transportation</a></li>
+      <li><a href="chatbot.html">Chatbot</a></li>
+      <li><a href="account.html" class="memory-btn">Memory Vault</a></li>
+    </ul>
+  </nav>
+  
+  <section class="section">
+    <h2>🗣️ Must-Know Phrases for Visitors to Saudi Arabia</h2>
+    <ul>
+      <li><strong>Marhaban (مرحبا):</strong> Hello</li>
+      <li><strong>Shukran (شكراً):</strong> Thank you</li>
+      <li><strong>Min fadlik (من فضلك):</strong> Please</li>
+      <li><strong>Kam al-thaman? (كم الثمن؟):</strong> How much is it?</li>
+      <li><strong>Ayna al-hammam? (أين الحمام؟):</strong> Where is the bathroom?</li>
+      <li><strong>La afham (لا أفهم):</strong> I don’t understand</li>
+      <li><strong>Naam / Laa (نعم / لا):</strong> Yes / No</li>
+      <li><strong>Hal tatahaddath al-Ingleeziyah? (هل تتحدث الإنجليزية؟):</strong> Do you speak English?</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 BugSquad19 | All rights reserved.</p>
+  </footer>
+
+  <script>
+    const images = [
+    'images/pretty stadium.png',
+      'images/interface.png',
+      'images/stadium.jpg',
+      'images/people.png',
+    ];
+
+    let current = 0;
+    const bg = document.getElementById('bg-slideshow');
+
+    function switchBackground() {
+      bg.style.opacity = 0;
+      setTimeout(() => {
+        current = (current + 1) % images.length;
+        bg.style.backgroundImage = `url('${images[current]}')`;
+        bg.style.opacity = 1;
+      }, 1000);
+    }
+
+    bg.style.backgroundImage = `url('${images[0]}')`;
+    setInterval(switchBackground, 8000);
+  </script>
+</body>
+</html>
