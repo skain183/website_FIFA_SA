@@ -1,15 +1,15 @@
-
-# تحتاج قبل تشغيل الكود تثبيت مكتبتين عبر تنفيذ السطرين التاليين:
-# pip install sentence-transformers
-# pip install torch
+# Install these if you haven't already:
+# !pip install sentence-transformers torch --quiet
+# !pip install --upgrade gradio --quiet
 
 from sentence_transformers import SentenceTransformer, util
 import torch
+import gradio as gr
 
-# تحميل نموذج الذكاء الاصطناعي لفهم الجمل
+# Load the AI model
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
-# الأسئلة المتوقعة والردود المناسبة لها
+# FAQ dictionary
 faq = {
     "متى المباراة القادمة؟": "المباراة القادمة يوم الجمعة الساعة 9 مساءً في استاد الملك فهد.",
     "أين يقع أقرب ملعب؟": "أقرب ملعب هو استاد الجوهرة في جدة.",
@@ -23,30 +23,23 @@ faq = {
     "Tourist attractions?": "You can visit Al-Balad, the Corniche, and the King Fahd Fountain."
 }
 
-# تجهيز التضمينات Embeddings
+# Prepare embeddings for FAQ questions
 faq_questions = list(faq.keys())
 faq_embeddings = model.encode(faq_questions, convert_to_tensor=True)
 
-def smart_chatbot():
-    print("Welcome to the Smart World Cup Guide Bot!")
-    print("Ask me anything about matches, tickets, places, and more.")
-    
-    while True:
-        user_input = input("You: ")
-        if user_input.lower() in ["bye", "خلاص"]:
-            print("Bot: Thank you! Enjoy your World Cup experience!")
-            break
-        
-        # تحليل الجملة ومقارنتها مع الأسئلة الموجودة
-        user_embedding = model.encode(user_input, convert_to_tensor=True)
-        cosine_scores = util.cos_sim(user_embedding, faq_embeddings)
-        
-        # العثور على أعلى تطابق
-        best_match_idx = torch.argmax(cosine_scores)
-        best_question = faq_questions[best_match_idx]
-        best_answer = faq[best_question]
-        
-        print(f"Bot: {best_answer}")
+# Chatbot response function
+def chatbot_response(user_input):
+    user_embedding = model.encode(user_input, convert_to_tensor=True)
+    cosine_scores = util.cos_sim(user_embedding, faq_embeddings)
+    best_match_idx = torch.argmax(cosine_scores)
+    best_question = faq_questions[best_match_idx]
+    return faq[best_question]
 
-# لتشغيل البوت
-smart_chatbot()
+# Create Gradio interface
+iface = gr.Interface(fn=chatbot_response, inputs="text", outputs="text", 
+                     title="Smart World Cup Guide Bot",
+                     description="Ask me anything about matches, tickets, places, and more.")
+
+# Launch with a public link
+iface.launch(share=True)
+
