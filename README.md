@@ -25,8 +25,10 @@ No special installation is needed. Just follow these steps:
 
 #### Requirements:
 - Python 3.8 or higher
-- Internet connection to download models
+#NOTE : if the chatbot didn't work please try this link https://43c58c578cf6ea91ba.gradio.live/
+
 
 #### Install dependencies:
 ```bash
 pip install sentence-transformers torch
+
