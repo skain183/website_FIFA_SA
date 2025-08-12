@@ -22,12 +22,13 @@ No special installation is needed. Just follow these steps:
 
 #### Requirements:
 - Python 3.8 or higher
-#NOTE : if the chatbot didn't work please try this link https://43c58c578cf6ea91ba.gradio.live/
+#NOTE : if the chatbot didn't work please try this link[ https://43c58c578cf6ea91ba.gradio.live/](https://colab.research.google.com/drive/1RR5DwR6O1BvbL2bmueW_Sa7j5svjdiZU?usp=sharing)
 
 
 #### Install dependencies:
 ```bash
 pip install sentence-transformers torch
+
 
 
 
