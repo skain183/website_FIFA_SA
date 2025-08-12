@@ -32,3 +32,4 @@ No special installation is needed. Just follow these steps:
 ```bash
 pip install sentence-transformers torch
 
+
